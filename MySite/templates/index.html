@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>商品查询</h3>
+    <form action="/all/" method="get">
+    <input type="submit" value="查询全部">
+    </form>
+    <br>
+    <form action="/search_name/" method="get">
+        <input type="text" name="goods_name" title="">
+        <input type="submit" value="名称查询">
+    </form>
+    <br>
+    <form action="/search_price/" method="GET">
+        <input type="text" name="min_price" title="">
+        <input type="text" name="max_price" title="">
+        <input type="submit" value="价格区间查询" title="">
+    </form>
+    <br>
+    <form action="/search_sort/" method="get">
+        <input type="radio" name="sort" value="all_asc" checked title="">查询全部并升序排列
+        <input type="radio" name="sort"  value="all_desc"  title="">查询全部并降序排列
+        <input type="radio" name="sort"  value="result_asc" title="">条件查询并升序排列
+        <input type="submit" value="排序查询">
+    </form>
+{% endblock %}

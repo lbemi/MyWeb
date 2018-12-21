@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>搜索结果：</h3>
+    <ol>
+        {% for goods_info in goods_list %}
+            <li>
+                <label style="display:inline-block;width:120px;">名称：{{ goods_info.goods_name }}</label>
+                <label style="display:inline-block;width:120px;">数量：{{ goods_info.goods_number }}</label>
+                <label style="display:inline-block;width:90px;">价格：{{ goods_info.goods_price }}</label>
+            {% empty %}
+                没有查询结果
+         {% endfor %}
+    </ol>
+
+{% endblock %}

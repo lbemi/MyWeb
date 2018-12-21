@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{{ letters|length }}<br>
+{{ letters|upper }}<br>
+{{ letters|join:',' }}<br>
+{{ number|add:1 }}<br>
+{{ number|add:-1 }}<br>
+{%  endblock %}

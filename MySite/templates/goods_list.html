@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4>搜索结果：</h4>
+    {{ result }}
+    {% for re in result %}
+        <ol>
+            <li>
+        <input type="text" title="">{{ result.goods_name }}
+        </ol>
+    {% endfor %}
+{% endblock %}

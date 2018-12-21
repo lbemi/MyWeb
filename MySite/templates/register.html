@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block  content %}
+    <h3>用户注册</h3>
+    <input type="text" name="user_name" id="user_name" title="" >
+    <label id="msg_user"></label><br>
+    <input type="password" name="password" id="password" title="">
+    <label id="msg_pass"></label><br><br>
+    <button type="button" id="register">注册</button>
+    <label id="msg_reg"></label>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var us = '';
+        });
+        $("#user_name").focusout(function () {
+            var name = $('#user_name').val();
+            if (name !==''){
+                $.getJSON("/check/",{'user_name':name}, function (result) {
+                    if (result === 100){
+                        $('#msg_reg').html('用户已存在');
+                        registered = true;
+                    }else if (result === 200) {
+                        $('#msg_reg').html('');
+                        registered = false;
+                    }
+                })
+            } else {
+                $('#msg_reg').html('请输入用户名！');
+            }
+        });
+        $('#register').click(function () {
+            var name = $('#user_name').val();
+            var pass = $('#password').val();
+            if (registered === false && name !=='' && pass !==''){
+                console.log('判定');
+                $.getJSON('/register/',{'user_name':name,'password':pass}, function (result) {
+                    if (result["status"] === 100){
+                        console.log(result['status']);
+                        $('#msg_reg').html('注册失败！！');
+                    }
+                    if (result["status"] === 200) {
+                        console.log(result['status']);
+                        $('#msg_reg').html('注册成功！！');
+                    }
+                })
+            } else {
+                $('#msg_reg').html('请按要求填写！');
+            }
+        });
+    </script>
+{% endblock %}

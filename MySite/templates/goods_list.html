@@ -83,7 +83,6 @@
             }
         })
     });
-
     $('button.delete').click(function () {
         var name = $(this).attr('id');
         $.getJSON('/del/',{'goods_name':name}, function (result) {

@@ -4,6 +4,7 @@ from MySite import api
 from MySite.models import Goods, Users, GoodsInfo
 from django.db.models import Q
 import json
+from django.core import serializers
 def index(request):
     # with open('/home/wjl/MyWeb/MySite/data', 'r', encoding='utf-8') as file:
         # for line in file:
@@ -126,4 +127,56 @@ def check_user(request):
     return HttpResponse(status)
 
 def goods_list(request):
-    return HttpResponse('ghjk')
+    result = GoodsInfo.objects.all()
+    content = {
+        'title':'管理商品',
+        'goods_list':result
+    }
+    return render(request, 'goods_list.html', content)
+
+
+def add_goods(request):
+    name = request.GET['goods_name']
+    price =  request.GET['goods_price']
+    number = request.GET['goods_number']
+    print("*********************")
+    isexist = GoodsInfo.objects.filter(goods_name=name)
+    try:
+        if not isexist:
+
+            goods = GoodsInfo()
+            goods.goods_name = name
+            goods.goods_price = price
+            goods.goods_number = number
+            goods.save()
+            result = 200
+        else:
+            result = 100
+    except Exception as e:
+        print('Error--->:' + str(e))
+    print(result)
+    return HttpResponse(result)
+
+def del_goods(request):
+    name  = request.GET['goods_name']
+    goods = GoodsInfo.objects.filter(goods_name=name)
+    try:
+        goods.delete()
+        result = 200
+    except:
+        result = 100
+    return HttpResponse(result)
+
+
+def search(request):
+    min_price = request.GET['min_price']
+    max_price = request.GET['max_price']
+    goods = GoodsInfo.objects.filter(goods_price__gte=min_price, goods_price__lte = max_price)
+    try:
+        if goods:
+            result = json.dumps(serializers.serialize('json',goods))
+        else:
+            result = 100
+    except:
+        result = 100
+    return HttpResponse(result)

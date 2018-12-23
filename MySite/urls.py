@@ -15,4 +15,7 @@ urlpatterns = [
     path('check/', views.check_user),
     path('reg/',views.reg),
     path('goods_list/', views.goods_list),
+    path('add/', views.add_goods),
+    path('del/',views.del_goods),
+    path('search/',views.search),
 ]

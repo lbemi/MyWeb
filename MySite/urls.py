@@ -18,4 +18,5 @@ urlpatterns = [
     path('add/', views.add_goods),
     path('del/',views.del_goods),
     path('search/',views.search),
+    path('user_name/', views.get_name),
 ]

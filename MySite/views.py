@@ -1,10 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from MySite import api
 from MySite.models import Goods, Users, GoodsInfo
 from django.db.models import Q
 import json
 from django.core import serializers
+from MySite.forms import NameForm
+
+
+
 def index(request):
     # with open('/home/wjl/MyWeb/MySite/data', 'r', encoding='utf-8') as file:
         # for line in file:
@@ -180,3 +184,14 @@ def search(request):
     except:
         result = 100
     return HttpResponse(result)
+
+
+
+def get_name(request):
+    if request.method == 'POST':
+        forms = NameForm(request.POST)
+        if forms.is_valid():
+            return  HttpResponseRedirect('/goods_list/')
+    else:
+        forms = NameForm()
+    return  render(request, 'name.html',{'form':forms})

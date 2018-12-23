@@ -16,6 +16,19 @@ class Users(models.Model):
 
 
 class GoodsInfo(models.Model):
-    goods_name = models.CharField(max_length=30, primary_key=True)
-    goods_number = models.IntegerField()
-    goods_price = models.FloatField()
+    goods_name = models.CharField(verbose_name='商品名称',max_length=30, primary_key=True)
+    goods_number = models.IntegerField(verbose_name='数量')
+    goods_price = models.FloatField(verbose_name='价格')
+
+    class Meta:
+        verbose_name_plural = '商品管理'
+        verbose_name = '商品'
+
+    def __str__(self):
+        return self.goods_name
+
+    def sales_volume(self):
+        return self.goods_price*self.goods_number
+
+    sales_volume.short_description = '总价格'
+    goods_total = property(sales_volume)

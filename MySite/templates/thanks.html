@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>感谢</title>
+</head>
+<body>
+您已发送<b>{{ count }}</b>封邮件到以下地址：{{ file }}
+{% for email in to %}
+    <li>{{ email }}</li>
+{% endfor %}
+感谢您的使用！
+</body>
+</html>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from MyWeb import MW
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '6v34p)$t6o245x#_411#=&8s0!6%lr6+0a1g8#j$+d_$8ufq2z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'MW.middleware.AaccessRestrictionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'MyWeb.urls'
@@ -64,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'MyWeb.context_processor.getuserip',
             ],
         },
     },
@@ -123,3 +127,10 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'templates'),
 # )
+
+EMAIL_USE_SSL = True  # 使用SSL加密方式
+EMAIL_HOST = 'smtp.qq.com'  # 发送邮件服务器地址
+EMAIL_PORT = '465'  # 发送邮件服务器端口
+EMAIL_HOST_USER = '1772281555@qq.com'  # 发件邮箱地址
+EMAIL_HOST_PASSWORD = 'krysuynbnhiwcggb'  # 开启STMP服务时生成的授权码
+DEFAULT_FROM_EMAIL = 'haizzho<1772281555@qq.com>'  # 默认发件邮箱地址

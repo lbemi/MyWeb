@@ -32,3 +32,13 @@ class GoodsInfo(models.Model):
 
     sales_volume.short_description = '总价格'
     goods_total = property(sales_volume)
+
+class UserModel(models.Model):
+    email = models.EmailField('邮箱')
+    password = models.CharField('密码', max_length=256)
+    name = models.CharField('姓名', max_length=20)
+    age = models.IntegerField('年龄')
+    birthday = models.DateField('生日')
+    ip = models.GenericIPAddressField('IP')
+
+

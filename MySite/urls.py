@@ -19,4 +19,7 @@ urlpatterns = [
     path('del/',views.del_goods),
     path('search/',views.search),
     path('user_name/', views.get_name),
+    path('send_email/', views.send_email),
+    path('email/', views.wirte_email),
+    path('re/', views.re),
 ]

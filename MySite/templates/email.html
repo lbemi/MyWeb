@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>撰写邮件</title>
+</head>
+<body>
+<form action="/send_email/" method="post" novalidate='novalidate' enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for filed in email_form %}
+        <div>
+            {{ filed.label_tag }}
+            {{ filed }}
+            {% if filed.help_text %}
+                <span style="color: orange;">{{ filed.help_text }}</span>
+            {% endif %}
+        </div>
+        <br>
+    {% endfor %}
+    <input type="submit" value="发送">
+</form>
+</body>
+</html>

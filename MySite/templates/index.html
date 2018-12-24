@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 <h3>商品查询</h3>
+
+    <form action="/" method="post">
+        {% csrf_token %}
+        {% if username %}
+            您好,{{ username }}
+            <a href="exit/">退出</a>
+        {% else %}
+            <input type="text" name="username">
+            <input type="submit" value="登录">
+        {% endif %}
+    </form>
     当前访问用户：{{ user_type }}
     <form action="/all/" method="get">
     <input type="submit" value="查询全部">

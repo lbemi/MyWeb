@@ -15,15 +15,23 @@ from hashlib import md5
 
 
 def index(request):
-    # with open('/home/wjl/MyWeb/MySite/data', 'r', encoding='utf-8') as file:
-        # for line in file:
-        #     lst = line.strip().split(',')
-        #     print(lst)
-        #     state = GoodsInfo.objects.create(goods_name=lst[0],
-        #                                  goods_number=lst[1],
-        #                                  goods_price=lst[2])
-        #     print(state)
-    return render(request,'index.html',{'title':'首页'})
+    if request.session.get('username',None):
+        # return render(request,'index.html',{'title':'首页','username':request.COOKIES['username']})
+        # return render(request,'index.html',{'username':request.get_signed_cookie('username',salt='afgjhhhhhksdhfsdfsjkhf')})
+        return render(request, 'index.html',{'username':request.session['username']})
+    if request.method == 'POST':
+        username = request.POST['username']
+        # res = render(request,'index.html',{'title':'首页','username':username})
+        # res.set_cookie('username',username,5)
+        request.session['username'] = username
+        # res.set_signed_cookie('username',username,salt='afgjhhhhhksdhfsdfsjkhf')
+        return render(request, 'index.html', {'title':'首页','username':username})
+    else:
+        return render(request, 'index.html',{'title':'首页'})
+def exit(request):
+    res = HttpResponseRedirect('/')
+    res.delete_cookie('username')
+    return res
 
 def trans2(request,from_lang,to_lang,words):
     # from_lang = request.GET['from_lang']

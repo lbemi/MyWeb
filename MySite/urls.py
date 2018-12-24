@@ -22,4 +22,5 @@ urlpatterns = [
     path('send_email/', views.send_email),
     path('email/', views.wirte_email),
     path('re/', views.re),
+    path('exit/', views.exit),
 ]

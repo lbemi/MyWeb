@@ -1,0 +1,10 @@
+sudo create_ap wlp3s0 enp2s0 wjl 12345678
+
+
+docker run -p 80:8080 -p 50000:50000 -v /usr/local/jenkins:/var/jenkins_home --name jenkins -idt jenkins
+
+sudo mount -t cifs -o username=a,password=muzhuang //192.168.0.254/ops/ gx
+//192.168.0.254/ops/ /home/wjl/gx cifs username= a,password=muzhuang 0 0
+
+rr
+Youxuanrr

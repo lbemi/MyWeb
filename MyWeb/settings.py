@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MyWeb',
     'MySite',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -123,9 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'templates'),
-# )
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+print(STATICFILES_DIRS)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 EMAIL_USE_SSL = True  # 使用SSL加密方式
 EMAIL_HOST = 'smtp.qq.com'  # 发送邮件服务器地址
@@ -133,3 +139,35 @@ EMAIL_PORT = '465'  # 发送邮件服务器端口
 EMAIL_HOST_USER = '1772281555@qq.com'  # 发件邮箱地址
 EMAIL_HOST_PASSWORD = 'krysuynbnhiwcggb'  # 开启STMP服务时生成的授权码
 DEFAULT_FROM_EMAIL = 'haizzho<1772281555@qq.com>'  # 默认发件邮箱地址
+
+
+
+SUMMERNOTE_CONFIG = {
+    # 是否使用IFrame的方式，不使用的话必须加载Bootstrap/jQuery。
+    'iframe': True,
+    # 以下为SummerNote自定义设置
+    'summernote': {
+        # 隐身模式
+        'airMode': False,
+        # 编辑器的尺寸
+        'width': '100%',
+        'height': '720',
+        # 语言设置
+        'lang': 'zh-CN',
+        # 设置字体列表
+        'fontNames':
+            [
+                'Arial',
+                'Arial Black',
+                'Comic Sans MS',
+                'Courier New',
+                '宋体',  # 也可以写为“Songti”
+                'Microsoft YaHei'  # 也可以写为“微软雅黑”
+            ]
+    },
+    # 附加样式表
+    'css': (
+        '/static/summernote/theme/cosmo.css',  # 附加编辑器主题
+        # '/static/summernote/theme/darkly.css',# 多个主题时默认加载最后一个，建议注释不使用的主题。
+    ),
+}

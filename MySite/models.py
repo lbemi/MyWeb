@@ -1,5 +1,5 @@
 from django.db import models
-
+from django_summernote.fields import SummernoteTextField
 class Goods(models.Model):
     goods_name = models.CharField(max_length=30)
     goods_number = models.IntegerField()
@@ -40,5 +40,5 @@ class UserModel(models.Model):
     age = models.IntegerField('年龄')
     birthday = models.DateField('生日')
     ip = models.GenericIPAddressField('IP')
-
-
+class SunmerNoteTest(models.Model):
+    TestField = SummernoteTextField()

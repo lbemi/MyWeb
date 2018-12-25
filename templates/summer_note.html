@@ -1,0 +1,57 @@
+{#{% load static %}#}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑器测试</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{%  static 'summernote/summernote-lite.css' %}">
+    <script src="{% static 'summernote/summernote.js' %}"></script>
+    <script src="{% static 'summernote/lang/summernote-zh-CN.js' %}"></script>
+    <script src="{% static 'summernote/theme/darkly.css' %}"></script>
+</head>
+<body>
+    <div id="summernote">chjd</div>
+{#    <form method="post">#}
+{#        <textarea id="summernote" name="editordata"></textarea>#}
+{#    </form>#}
+</body>
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({#编辑器设置#}
+                {
+                    width: 750,
+                    height: 360,
+                    focus: true, {#页面打开时光标自动进入编辑区#}
+                    lang: 'zh-CN',
+                    toolbar: [{#工具栏加载项设置#}
+                        ['style', ['style']], {#文本样式#}
+                        ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript',
+                            'strikethrough', 'clear']], {#字体样式#}
+                        ['fontname', ['fontname']], {#字体列表#}
+                        ['fontsize', ['fontsize']], {#字体尺寸#}
+                        ['color', ['color']], {#字体颜色#}
+                        ['para', ['ul', 'ol', 'paragraph']], {#文本列表#}
+                        ['height', ['height']], {#行高#}
+                        ['table', ['table']], {#表格#}
+                        ['insert', ['link', 'picture', 'video', 'hr']], {#插入项#}
+                        ['view', ['fullscreen', 'codeview']], {#视图#}
+                        ['help', ['help']]{#帮助#}
+                    ],
+                    fontNames:
+                        [
+                            'Arial',
+                            'Arial Black',
+                            'Comic Sans MS',
+                            'Courier New',
+                            '宋体',
+                            'Microsoft YaHei'
+                        ]
+                }
+            );
+        });
+    </script>
+</html>

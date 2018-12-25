@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from MyWeb import settings
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('MySite.urls')),
+    path('summernote/',include('django_summernote.urls')),
+    path('media/<path:path>', serve, {'document_root':settings.MEDIA_ROOT}),
+    path('static/<path:path>',serve,{'document_root':settings.STATICFILES_DIRS}),
+
 ]

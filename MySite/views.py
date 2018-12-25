@@ -112,7 +112,7 @@ def search_sort(request):
 
 def reg(req):
 
-    return render(req, 'register.html')
+    return render(req, 'summer_note.html')
 
 
 def register(request):

@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from MySite import views
+from django.views.static import serve
+
 
 urlpatterns = [
     path('',views.index ),
